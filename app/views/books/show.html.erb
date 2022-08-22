@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'users/info', user: @book.user %>
+      <%= render partial: 'users/info',  locals: { user: @book.user, followings: @followings, followers: @followers } %>
       <h2 class="mt-3">New book</h2>
       <%= render 'form', book: @book_new %>
     </div>
