@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :followed, class_name: 'Relationship', foreign_key: "followed_id", dependent: :destroy
   has_many :followings, through: :follower, source: :followed
   has_many :followers, through: :followed, source: :follower
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -33,12 +35,12 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   def self.looks(search, word)
     if search == "perfect_match"
       @user = User.where("name Like?", "#{word}")
     elsif search == "forward_match"
-      @user = User.where("name Like?", "#{word}%")  
+      @user = User.where("name Like?", "#{word}%")
     elsif search == "backword_match"
       @user = User.where("name Like?", "%#{word}")
     elsif search == "partial_match"
@@ -47,5 +49,5 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
-  
+
 end
