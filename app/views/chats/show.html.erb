@@ -1,2 +1,13 @@
-<h1>Chats#show</h1>
-<p>Find me in app/views/chats/show.html.erb</p>
+<h2><%= @user.name %>さんとのチャット</h2>
+
+
+<% @chats.each do |chat| %>
+  <%= chat.message %>
+<% end %>
+
+
+<%= form_with model: @chat do |f| %>
+  <%= f.text_field :message %>
+  <%= f.hidden_field :room_id %>
+  <% f.submit %>
+<% end %>
