@@ -1,13 +1,24 @@
 <h2><%= @user.name %>さんとのチャット</h2>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <% @chats.each do |chat| %>
+        <% if chat.user_id == current_user.id %>
+          <div class="text-right"><%= chat.message %></div>
+        <% else %>
+          <div class="text-left"><%= chat.message %></div>
+        <% end %>
+      <% end %>
 
-<% @chats.each do |chat| %>
-  <%= chat.message %>
-<% end %>
+      <div class="text-right">
+        <%= form_with model: @chat do |f| %>
+          <%= f.text_field :message %>
+          <%= f.hidden_field :room_id %>
+          <% f.submit %>
+        <% end %>
+      </div>
 
-
-<%= form_with model: @chat do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id %>
-  <% f.submit %>
-<% end %>
+    </div>
+  </div>
+</div>
