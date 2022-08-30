@@ -1,8 +1,10 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
+  impressionist :actions=> [:show]
 
   def show
     @book = Book.find(params[:id])
+    impressionist(@book, nil, unique: [:session_hash])
     @book_new = Book.new
     @book_comment = BookComment.new
     @user = @book.user

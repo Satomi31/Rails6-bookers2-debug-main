@@ -11,7 +11,7 @@
   		<table class='table'>
   		  <tr>
           <td><%= link_to(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
+            <%= image_tag @book.user.get_profile_image, size:"50x50" %><br>
             <%= @book.user.name %>
             <% end %>
           </td>
@@ -23,6 +23,7 @@
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
           <td class="comment_count">コメント数:<%= @book.book_comments.count %></td>
+          <td>閲覧数:<%=  @book.impressionist_count %></td>
         </tr>
       </table>
       <table id="book_comments_<%= @book.id %>">
