@@ -21,9 +21,12 @@
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <td class="comment_count"><i class="fas fa-comments"></i></i><%= @book.book_comments.count %></td>
+            <td><i class="fas fa-eye"></i><%=  @book.impressionist_count %></td>
+          <% else %>
+            <td class="comment_count">コメント数:<%= @book.book_comments.count %></td>
+            <td>閲覧数:<%=  @book.impressionist_count %></td>
           <% end %>
-          <td class="comment_count">コメント数:<%= @book.book_comments.count %></td>
-          <td>閲覧数:<%=  @book.impressionist_count %></td>
         </tr>
       </table>
       <table id="book_comments_<%= @book.id %>">
