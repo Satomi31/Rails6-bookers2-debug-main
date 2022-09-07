@@ -1,5 +1,5 @@
-<h2>Books search for "<%= @word %>"</h2>
 <% if @range == "User" %>
+<h2>Users search for "<%= @word %>"</h2>
   <table class='table table-hover table-inverse'>
     <thead>
       <tr>
@@ -18,6 +18,7 @@
     </tbody>
   </table>
 <% else %>
+<h2>Books search for "<%= @word %>"</h2>
   <table class='table table-hover table-inverse'>
     <thead>
       <tr>
@@ -29,12 +30,14 @@
     </thead>
     <tbody>
       <% @books.each do |book| %>
-        <td><%= link_to(book.user) do %>
-          <%= image_tag book.user.get_profile_image, size:'50x50' %>
-          <% end %>
-        </td>
-        <td><%= link_to book.title,book %></td>
-        <td><%= book.body %></td>
+        <tr>
+          <td><%= link_to(book.user) do %>
+            <%= image_tag book.user.get_profile_image, size:'50x50' %>
+            <% end %>
+          </td>
+          <td><%= link_to book.title,book %></td>
+          <td><%= book.body %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>

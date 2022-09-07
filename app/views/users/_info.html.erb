@@ -37,8 +37,10 @@
         <%= link_to 'フォローする', user_relationships_path(user.id), method: :post, class:"btn btn-success" %>
       <% end %>
     <% else %>
-      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
-        <i class="fas fa-user-cog"></i>
+      <% if user.name != "guestuser" %>
+        <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
       <% end %>
     <% end %>
   </div>
